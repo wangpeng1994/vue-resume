@@ -20,7 +20,7 @@ export default {
 <style scoped lang="scss">
   #topbar {
     background: #fff;
-    box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
     font-size: 20px;
     > .wrapper {
       max-width: 1440px;
