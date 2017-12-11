@@ -4,8 +4,8 @@
       <span class="logo">Resume</span>
       
       <div class="actions">
-        <button class="save">保存</button>
-        <button>预览</button>
+        <el-button type="success">保存</el-button>
+        <el-button type="primary">预览</el-button>
       </div>
     </div>
   </div>
@@ -21,6 +21,7 @@ export default {
   #topbar {
     background: #fff;
     box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+    font-size: 20px;
     > .wrapper {
       max-width: 1440px;
       margin: 0 auto;
@@ -37,25 +38,5 @@ export default {
       color:#000;
     }
   }
-
-  button {
-    width:72px;
-    height:32px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    background: #ddd;
-    color: #222;
-    &:hover {
-      box-shadow: 1px 1px 1px rgba(0,0,0,0.50);
-    }
-    &.save {
-      background:#02af5f;
-      color: #fff;
-    }
-
-  }
-
-
 </style>
 

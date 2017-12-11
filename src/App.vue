@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import 'normalize.css/normalize.css'
+import 'normalize.css'
 import './assets/reset.css' //因为 webpack 支持这样引入css
 
 import Topbar from './components/Topbar'
@@ -30,8 +30,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-  
   .page {
     height: 100vh;
     display: flex;
@@ -51,6 +49,13 @@ export default {
       width: 100%;
       align-self: center;
     }
+  }
+
+  .icon {
+    width: 2em; height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
   }
 
   #resumeEditor { width: 35%; }

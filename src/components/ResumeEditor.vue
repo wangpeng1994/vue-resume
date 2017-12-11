@@ -7,10 +7,11 @@
             :class="{active: item === selected}"
             @click="selected = item"
             >
-          {{ index }}
-        </li>
-        
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="`#icon-${item}`"></use>
+          </svg>
 
+        </li>
       </ol>
     </nav>
     <ol class="panels">
@@ -29,13 +30,13 @@ export default {
     return {
       selected: 'bio',
       resume: {
-        visibleItems: ['bio', 'work history', 'education', 'projects', 'awards', 'contacts', 'others'],
+        visibleItems: ['bio', 'work', 'education', 'projects', 'awards', 'contacts', 'others'],
         bio: {
           name: '',
           city: '',
           titile: ''
         },
-        'work history': [],
+        work: [],
         education: [],
         projects: [],
         awards: [],
@@ -53,7 +54,8 @@ export default {
     background:#fff;
     box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
     display: flex;
-    // overflow: auto;
+    border-radius: 4px;
+    overflow: hidden;
     > nav {
       width: 80px;
       background: #000;
