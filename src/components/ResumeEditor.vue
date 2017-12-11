@@ -14,7 +14,17 @@
     </nav>
     <ol class="panels">
       <li v-for="item in resume.config" v-show="item.field === selected">
-        <div class="resumeField" v-for="(value,key) in resume[item.field]">
+        <div v-if="resume[item.field] instanceof Array">
+          <div class="subitem" v-for="subitem in resume[item.field]">
+            <div class="resumeField" v-for="(value,key) in subitem">
+              <label> {{ key }} </label>
+              <input type="text" :value="value"> 
+            </div>
+            <hr>
+          </div>
+        </div>
+
+        <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{ key }} </label>
           <input type="text" v-model="resume[item.field][key]">
         </div>
@@ -40,15 +50,30 @@ export default {
           { field: 'contacts', icon: 'phone' },
         ],
         profile: {
-          name: '',
-          city: '',
-          titile: ''
+          name: '222',
+          city: '333',
+          titile: '444'
         },
-        'work history': [],
-        education: [],
-        projects: [],
-        awards: [],
-        contacts: []
+        'work history': [
+          {company: '百度', content: '担任百度藏经阁扫地僧'},
+          {company: '腾讯', content: '担任腾讯QB管理员'}
+        ],
+        education: [
+          { school: '哈佛大学', content: '文字' },
+          { school: '牛津大学', content: '文字' }          
+        ],
+        projects: [
+          { name: '项目1', content: '文字' },
+          { name: '项目2', content: '文字' }
+        ],
+        awards: [
+          { name: '获奖1', content: '文字' },
+          { name: '获奖2', content: '文字' }          
+        ],
+        contacts: [
+          { contact: 'phone', content: '18556529263' },
+          { contact: '邮箱', content: '947034046@qq.com' },
+        ]
       }
       
     }
@@ -104,6 +129,12 @@ export default {
   }
 
   ol { list-style: none; }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
+  }
 </style>
 
 
