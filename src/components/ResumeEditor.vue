@@ -3,20 +3,18 @@
   <div id="resumeEditor">
     <nav>
       <ol>
-        <li v-for="(item,index) in resume.visibleItems"
-            :class="{active: item === selected}"
-            @click="selected = item"
+        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field"
             >
           <svg class="icon" aria-hidden="true">
-            <use :xlink:href="`#icon-${item}`"></use>
+            <use :xlink:href="`#icon-${item.icon}`"></use>
           </svg>
 
         </li>
       </ol>
     </nav>
     <ol class="panels">
-      <li v-for="item in resume.visibleItems" v-show="item === selected">
-        {{ resume[item] }}
+      <li v-for="item in resume.config" v-show="item.field === selected">
+        {{ resume[item.field] }}
       </li>
     </ol>
   </div>
@@ -28,20 +26,26 @@ export default {
   name: 'ResumeEditor',
   data(){
     return {
-      selected: 'bio',
+      selected: 'profile',
       resume: {
-        visibleItems: ['bio', 'work', 'education', 'projects', 'awards', 'contacts', 'others'],
-        bio: {
+        config: [
+          { field: 'profile', icon: 'id' },
+          { field: 'work history', icon: 'work' },
+          { field: 'education', icon: 'hat' },
+          { field: 'projects', icon: 'folder' },
+          { field: 'awards', icon: 'cup' },
+          { field: 'contacts', icon: 'phone' },
+        ],
+        profile: {
           name: '',
           city: '',
           titile: ''
         },
-        work: [],
+        'work history': [],
         education: [],
         projects: [],
         awards: [],
-        contacts: [],
-        others: []
+        contacts: []
       }
       
     }
@@ -51,6 +55,7 @@ export default {
 
 <style lang="scss">
   #resumeEditor {
+    width: 35%;
     background:#fff;
     box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
     display: flex;

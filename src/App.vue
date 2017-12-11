@@ -50,19 +50,11 @@ export default {
       align-self: center;
     }
   }
-
+  // 引入svg通用样式
   .icon {
     width: 2em; height: 2em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
   }
-
-  #resumeEditor { width: 35%; }
-
-  #resumePreview {
-    flex-grow: 1;
-    margin-left: 16px;
-  }
-
 </style>
