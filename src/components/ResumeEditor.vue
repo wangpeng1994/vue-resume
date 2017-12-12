@@ -93,7 +93,7 @@ export default {
     > label {
       display: block;
     }
-    input[type=text] {
+    input[type="text"] {
       margin: 16px 0;
       border: 1px solid #ddd;
       box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.25);
