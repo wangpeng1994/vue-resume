@@ -41,7 +41,7 @@ export default {
         return this.$store.state.selected
       },
       set(value){
-        return this.$store.commit('switchTab', value) // set时，传入载荷，也就是最新的selected
+        return this.$store.commit('switchTab', value) // 计算属性默认只能 get，而这里UI事件会导致数据变更，所以需要启用 set，同时传入载荷，也就是最新的 selected
       }
     },
     resume(){
@@ -49,9 +49,7 @@ export default {
     },
   },
   methods: {
-    add(){
-      this.$store.commit('increment')
-    }
+
   }
 }
 </script>

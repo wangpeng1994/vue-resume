@@ -9,11 +9,11 @@ export default new Vuex.Store({
     resume: {
       config: [
         { field: 'profile', icon: 'id' },
+        { field: 'projects', icon: 'folder' },
         { field: 'workHistory', icon: 'work' },
         { field: 'education', icon: 'hat' },
-        { field: 'projects', icon: 'folder' },
         { field: 'awards', icon: 'cup' },
-        { field: 'contacts', icon: 'phone' },
+        { field: 'contacts', icon: 'phone' }
       ],
       profile: {
         name: '张三丰',
@@ -22,6 +22,10 @@ export default new Vuex.Store({
         birthday: '1542-05-01'
         
       },
+      projects: [
+        { name: '项目1', content: '文字' },
+        { name: '项目2', content: '文字' }
+      ],
       workHistory: [
         {
           company: '饭跑跑股份有限公司', content: `公司总部设在XXXX地区， 先后在北京、上海成立分公司。是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，聚集了数百万家餐饮商户。为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
@@ -42,17 +46,13 @@ export default new Vuex.Store({
         { school: '哈佛大学', content: '本科' },
         { school: '牛津大学', content: '硕士' }          
       ],
-      projects: [
-        { name: '项目1', content: '文字' },
-        { name: '项目2', content: '文字' }
-      ],
       awards: [
-        { name: '获奖1', content: '文字' },
-        { name: '获奖2', content: '文字' }          
+        { name: '吉尼斯编程大赛', content: '连续十年蝉联冠军' },
+        { name: '统一冰红茶大奖赛', content: '再来一瓶幸运王' }          
       ],
       contacts: [
         { contact: 'phone', content: '18556529263' },
-        { contact: '邮箱', content: '947034046@qq.com' },
+        { contact: 'email', content: '947034046@qq.com' },
       ]
     }
   },
