@@ -35,8 +35,6 @@
 <script>
 export default {
   name: 'ResumeEditor',
-
-  
   computed: {
     selected: {
       get(){
@@ -55,13 +53,12 @@ export default {
       this.$store.commit('increment')
     }
   }
-
 }
 </script>
 
 <style scoped lang="scss">
   #resumeEditor {
-    width: 35%;
+    min-width: 35%; //因为 预览区是 flex，所以会挤压元素，所以这里改成 min-width
     background:#fff;
     box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
     display: flex;
