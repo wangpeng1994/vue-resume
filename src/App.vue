@@ -52,7 +52,7 @@ export default {
   }
   // 引入svg通用样式
   .icon {
-    width: 2em; height: 2em;
+    width: 1.5em; height: 1.5em;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
