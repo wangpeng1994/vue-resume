@@ -5,8 +5,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count: 0,
-
     selected: 'profile',
     resume: {
       config: [
@@ -46,10 +44,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    increment(state){
-      state.count++
-    },
-    switchTab(state, payload){
+    switchTab(state, payload){ // 设置载荷，便于set
       state.selected = payload
     }
   }

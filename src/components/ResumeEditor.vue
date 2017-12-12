@@ -27,11 +27,6 @@
           <input type="text" v-model="resume[item.field][key]">
         </div>
       </li>
-
-      <li>
-        {{ count }}
-        <button @click="add">test</button>
-      </li>
     </ol>
   </div>
 
@@ -43,15 +38,12 @@ export default {
 
   
   computed: {
-    count(){
-      return this.$store.state.count
-    },
     selected: {
       get(){
         return this.$store.state.selected
       },
       set(value){
-        return this.$store.commit('switchTab', value)
+        return this.$store.commit('switchTab', value) // set时，传入载荷，也就是最新的selected
       }
     },
     resume(){
