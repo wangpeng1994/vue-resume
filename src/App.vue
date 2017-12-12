@@ -18,8 +18,11 @@ import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
 
+import store from './store/index'
+
 export default {
   name: 'app',
+  store,
   data(){
     return {
       text: '哈喽'

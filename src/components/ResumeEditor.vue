@@ -3,12 +3,10 @@
   <div id="resumeEditor">
     <nav>
       <ol>
-        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field"
-            >
+        <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
           <svg class="icon" aria-hidden="true">
             <use :xlink:href="`#icon-${item.icon}`"></use>
           </svg>
-
         </li>
       </ol>
     </nav>
@@ -18,7 +16,7 @@
           <div class="subitem" v-for="subitem in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{ key }} </label>
-              <input type="text" :value="value"> 
+              <input type="text" :value="value" @input="value = $event.target.value"> 
             </div>
             <hr>
           </div>
@@ -29,6 +27,11 @@
           <input type="text" v-model="resume[item.field][key]">
         </div>
       </li>
+
+      <li>
+        {{ count }}
+        <button @click="add">test</button>
+      </li>
     </ol>
   </div>
 
@@ -37,47 +40,30 @@
 <script>
 export default {
   name: 'ResumeEditor',
-  data(){
-    return {
-      selected: 'profile',
-      resume: {
-        config: [
-          { field: 'profile', icon: 'id' },
-          { field: 'work history', icon: 'work' },
-          { field: 'education', icon: 'hat' },
-          { field: 'projects', icon: 'folder' },
-          { field: 'awards', icon: 'cup' },
-          { field: 'contacts', icon: 'phone' },
-        ],
-        profile: {
-          name: '222',
-          city: '333',
-          titile: '444'
-        },
-        'work history': [
-          {company: '百度', content: '担任百度藏经阁扫地僧'},
-          {company: '腾讯', content: '担任腾讯QB管理员'}
-        ],
-        education: [
-          { school: '哈佛大学', content: '文字' },
-          { school: '牛津大学', content: '文字' }          
-        ],
-        projects: [
-          { name: '项目1', content: '文字' },
-          { name: '项目2', content: '文字' }
-        ],
-        awards: [
-          { name: '获奖1', content: '文字' },
-          { name: '获奖2', content: '文字' }          
-        ],
-        contacts: [
-          { contact: 'phone', content: '18556529263' },
-          { contact: '邮箱', content: '947034046@qq.com' },
-        ]
+
+  
+  computed: {
+    count(){
+      return this.$store.state.count
+    },
+    selected: {
+      get(){
+        return this.$store.state.selected
+      },
+      set(value){
+        return this.$store.commit('switchTab', value)
       }
-      
+    },
+    resume(){
+      return this.$store.state.resume
+    },
+  },
+  methods: {
+    add(){
+      this.$store.commit('increment')
     }
   }
+
 }
 </script>
 
