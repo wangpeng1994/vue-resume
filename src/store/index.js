@@ -60,6 +60,9 @@ export default new Vuex.Store({
   mutations: {
     switchTab(state, payload){ // 设置载荷，便于set
       state.selected = payload
+    },
+    updateResume(state, payload){
+      state.resume = payload
     }
   }
 })

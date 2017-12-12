@@ -16,7 +16,7 @@
           <div class="subitem" v-for="subitem in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{ key }} </label>
-              <input type="text" :value="value" @input="value = $event.target.value"> 
+              <input type="text" v-model="subitem[key]">
             </div>
             <hr>
           </div>
@@ -24,6 +24,7 @@
 
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{ key }} </label>
+          <!-- <input type="text" v-bind:value="resume[item.field][key]" @input="resume[item.field][key] = $event.target.value"> -->
           <input type="text" v-model="resume[item.field][key]">
         </div>
       </li>
@@ -46,7 +47,7 @@ export default {
     },
     resume(){
       return this.$store.state.resume
-    },
+    }
   },
   methods: {
 
