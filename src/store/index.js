@@ -61,8 +61,8 @@ export default new Vuex.Store({
     switchTab(state, payload){ // 设置载荷，便于set
       state.selected = payload
     },
-    updateResume(state, payload){
-      state.resume = payload
+    updataResume(state, {field, subfield, value}){
+      state.resume[field][subfield] = value
     }
   }
 })
