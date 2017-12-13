@@ -7,6 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     selected: 'profile',
+    user: {
+      id: '',
+      username: ''
+    },
     resume: {
       config: [
         { field: 'profile', icon: 'id' },
@@ -70,6 +74,10 @@ export default new Vuex.Store({
       // 调用 objectPath 的 set 接口，为 state.resume 的 path 设置 值，这里的 path 可能是单层的键名，也可能是数组下的对象的键名
       objectPath.set(state.resume, path, value)
       localStorage.setItem('state', JSON.stringify(state)) //input 内容每次变动，都会 commit 到这里，也因此实时储存
+    },
+    setUser(state, payload){
+      Object.assign(state.user, payload)
+      console.log(state.user)
     }
   }
 })

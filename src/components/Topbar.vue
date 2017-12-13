@@ -6,7 +6,7 @@
       <div class="actions">
         <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
         <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-          我就会是 MyDialog 组件中的 slot
+          <signUpForm @success="login($event)"/>
         </MyDialog>
         <el-button type="primary">登录</el-button>
         <el-button type="success">保存</el-button>
@@ -18,6 +18,7 @@
 
 <script>
 import MyDialog from './MyDialog'
+import SignUpForm from './SignUpForm'
 
 export default {
   name: 'Topbar',
@@ -26,7 +27,18 @@ export default {
       signUpDialogVisible: false
     }
   },
-  components: {MyDialog}
+  computed: {
+    user(){
+      return this.$store.state.user
+    }
+  },
+  components: {MyDialog, SignUpForm},
+  methods: {
+    login(user){ // 注意这里的 user 不是计算属性，只是形参，是由子组件 emit 时携带的信息
+      this.signUpDialogVisible = false
+      this.$store.commit('setUser', user)
+    }
+  }
 }
 </script>
 
