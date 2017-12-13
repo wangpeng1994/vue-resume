@@ -4,11 +4,17 @@
       <span class="logo">Resume</span>
       
       <div class="actions">
-        <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
-        <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-          <signUpForm @success="login($event)"/>
-        </MyDialog>
-        <el-button type="primary">登录</el-button>
+        <div class="userActions" v-if="logined">
+          <span>你好，{{ user.username }}</span>
+          <el-button type="danger">注销</el-button>
+        </div>
+        <div class="userActions" v-else>
+          <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
+          <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+            <signUpForm @success="login($event)"/>
+          </MyDialog>
+          <el-button type="primary">登录</el-button>
+        </div>
         <el-button type="success">保存</el-button>
         <el-button type="primary">预览</el-button>
       </div>
@@ -30,6 +36,9 @@ export default {
   computed: {
     user(){
       return this.$store.state.user
+    },
+    logined(){
+      return this.user.id
     }
   },
   components: {MyDialog, SignUpForm},
@@ -61,6 +70,12 @@ export default {
     .logo {
       font-size: 24px;
       color:#000;
+    }
+  }
+  .actions {
+    display: flex;
+    .userActions {
+      margin-right: 3em;
     }
   }
   // 修改 Element UI 样式
