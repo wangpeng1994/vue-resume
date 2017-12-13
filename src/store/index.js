@@ -59,12 +59,17 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    initState(state, payload){
+      Object.assign(state, payload) //将后者所有可枚举属性拷贝到前者中
+    },
     switchTab(state, payload){ // 设置载荷
       state.selected = payload
+      localStorage.setItem('state', JSON.stringify(state)) // 页面重载后，tab 也会载入上次 selected
     },
     updataResume(state, {path, value}){
       // 调用 objectPath 的 set 接口，为 state.resume 的 path 设置 值，这里的 path 可能是单层的键名，也可能是数组下的对象的键名
-      objectPath.set(state.resume, path, value) 
+      objectPath.set(state.resume, path, value)
+      localStorage.setItem('state', JSON.stringify(state)) //input 内容每次变动，都会 commit 到这里，也因此实时储存
     }
   }
 })

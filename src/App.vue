@@ -28,7 +28,14 @@ export default {
       text: '哈喽'
     }
   },
-  components: {Topbar, ResumeEditor, ResumePreview}
+  components: {Topbar, ResumeEditor, ResumePreview},
+  created(){
+    let state = localStorage.getItem('state')
+    if(state){
+      state = JSON.parse(state)
+    }
+    this.$store.commit('initState', state) //页面进入后，就立即尝试获得 localStorage 中的 state，然后 commit 到 mutation 中
+  }
 }
 </script>
 
