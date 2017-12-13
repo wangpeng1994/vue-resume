@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import objectPath from 'object-path'  // 引入 object-path，方便查找 resume 的属性
 
 Vue.use(Vuex)
 
@@ -58,11 +59,12 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    switchTab(state, payload){ // 设置载荷，便于set
+    switchTab(state, payload){ // 设置载荷
       state.selected = payload
     },
-    updataResume(state, {field, subfield, value}){
-      state.resume[field][subfield] = value
+    updataResume(state, {path, value}){
+      // 调用 objectPath 的 set 接口，为 state.resume 的 path 设置 值，这里的 path 可能是单层的键名，也可能是数组下的对象的键名
+      objectPath.set(state.resume, path, value) 
     }
   }
 })
