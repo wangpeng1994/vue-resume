@@ -5,35 +5,38 @@
       
       <div class="actions">
         <div class="userActions" v-if="logined">
-          <span>你好，{{ user.username }}</span>
+          <span class="welcome">你好，{{ user.username }}</span>
           <el-button type="danger" @click="signOut">注销</el-button>
         </div>
-
         <div class="userActions" v-else>
           <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
-          <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-            <signUpForm @success="signIn($event)"/>
-          </MyDialog>
-          <el-button type="primary">登录</el-button>
+          <el-button type="primary" @click="signInDialogVisible = true">登录</el-button>
         </div>
-
         <el-button type="success">保存</el-button>
         <el-button type="primary">预览</el-button>
       </div>
     </div>
+    <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+      <SignUpForm @success="signIn($event)"/>
+    </MyDialog>
+    <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+      <SignInForm @success="signIn($event)"/>
+    </MyDialog>
   </div>
 </template>
 
 <script>
 import MyDialog from './MyDialog'
 import SignUpForm from './SignUpForm'
+import SignInForm from './SignInForm'
 import AV from '../lib/leancloud'
 
 export default {
   name: 'Topbar',
   data(){
     return {
-      signUpDialogVisible: false
+      signUpDialogVisible: false,
+      signInDialogVisible: false,      
     }
   },
   computed: {
@@ -44,10 +47,11 @@ export default {
       return this.user.id
     }
   },
-  components: {MyDialog, SignUpForm},
+  components: {MyDialog, SignUpForm, SignInForm},
   methods: {
     signIn(user){ // 注意这里的 user 不是计算属性，只是形参，是由子组件 emit 时携带的信息
       this.signUpDialogVisible = false
+      this.signInDialogVisible = false
       this.$store.commit('setUser', user)
     },
     signOut(){
@@ -83,6 +87,9 @@ export default {
     display: flex;
     .userActions {
       margin-right: 3em;
+      .welcome {
+        margin-right: .5em;
+      }
     }
   }
   // 修改 Element UI 样式
