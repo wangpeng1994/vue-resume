@@ -41,8 +41,9 @@ export default {
       get(){
         return this.$store.state.selected
       },
+      // 计算属性，是伪属性，默认只能 get，而这里UI事件会导致数据变更，所以需要启用 set，同时传入载荷，也就是最新的 selected
       set(value){
-        return this.$store.commit('switchTab', value) // 计算属性默认只能 get，而这里UI事件会导致数据变更，所以需要启用 set，同时传入载荷，也就是最新的 selected
+        return this.$store.commit('switchTab', value)
       }
     },
     resume(){

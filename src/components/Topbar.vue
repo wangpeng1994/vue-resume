@@ -2,7 +2,6 @@
   <div id="topbar">
     <div class="wrapper">
       <span class="logo">Resume</span>
-      
       <div class="actions">
         <div class="userActions" v-if="logined">
           <span class="welcome">你好，{{ user.username }}</span>

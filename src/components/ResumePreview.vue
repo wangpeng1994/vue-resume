@@ -3,12 +3,12 @@
     
     <section data-name="profile" v-show="resume.profile">
       <h1>
-        {{ resume.profile.name }}
+        {{ resume.profile.name || '请填写姓名' }}
       </h1>
-      <h2> {{ resume.profile.title }} </h2>
+      <h2> {{ resume.profile.title || '请填写职位' }} </h2>
       <p>
-        <small> {{ resume.profile.city }} </small>
-        <small> {{ resume.profile.birthday }} </small>
+        <small> {{ resume.profile.city || '请填写城市' }} </small>
+        <small> {{ resume.profile.birthday || '请填写出生年月' }} </small>
       </p>
     </section>
 
@@ -16,8 +16,8 @@
       <h2>项目经历</h2>
       <ol>
         <li v-for="item in resume.projects">
-          <h3> {{ item.name }} </h3>
-          <p v-show="item.content"> {{ item.content }} </p>
+          <h3> {{ item.name || '请填写项目名称' }} </h3>
+          <p> {{ item.content || '请填写项目内容' }} </p>
         </li>
       </ol>
     </section>
@@ -26,8 +26,8 @@
       <h2>工作经历</h2>
       <ol>
         <li v-for="item in resume.workHistory">
-          <h3> {{ item.company }} </h3>
-          <p v-show="item.content"> {{ item.content }} </p>
+          <h3> {{ item.company || '请填写公司名称' }} </h3>
+          <p> {{ item.content || '请填写工作内容' }} </p>
         </li>
       </ol>
     </section>
@@ -37,8 +37,7 @@
       <ol>
         <li v-for="item in resume.education">
           <h3>
-            {{ item.school }}
-            <span v-show="item.content"> - {{ item.content }} </span>
+            {{ item.school || '请填写学校名称' }} - {{ item.content || '请填写学历' }}
           </h3>
         </li>
       </ol>
@@ -48,20 +47,21 @@
       <h2>获奖情况</h2>
       <ol>
         <li v-for="item in resume.awards">
-          <h3> {{ item.name }} </h3>
-          <p v-show="item.content"> {{ item.content }} </p>
+          <h3> {{ item.name || '请填写比赛名称' }} </h3>
+          <p> {{ item.content || '请填写所获等次' }} </p>
         </li>
       </ol>
     </section>
 
     <section data-name="contacts" v-show="resume.contacts">
       <h2>联系方式</h2>
-      <table>
-        <tr v-for="item in resume.contacts">
-          <td> {{ item.contact }} </td>
-          <td v-show="item.content"> {{ item.content }} </td>          
-        </tr>
-      </table>
+      <ol>
+        <li v-for="item in resume.contacts">
+          <h3>
+            {{ item.contact || '请填写联系类型' }} - {{ item.content || '请填写联系方式' }}
+          </h3>
+        </li>
+      </ol>
     </section>
   </div>
 </template>
