@@ -21,6 +21,8 @@ import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
 
 import store from './store/index'
+import AV from './lib/leancloud'
+import getAVUser from './lib/getAVUser'
 
 export default {
   name: 'app',
@@ -36,7 +38,9 @@ export default {
     if(state){
       state = JSON.parse(state)
     }
-    this.$store.commit('initState', state) //页面进入后，就立即尝试获得 localStorage 中的 state，然后 commit 到 mutation 中
+    this.$store.commit('initState', state) // 页面进入后，就立即尝试获得 localStorage 中的 state，然后 commit 到 mutation 中
+    // 之前 SIgnUpForm 注册成功后，其父组件 Tobbar 会commit setUser， 而这一次是 App 主组件下页面载入时，也要去试着获取登录用户
+    this.$store.commit('setUser', getAVUser()) // 如果是已经登录的用户，这里的 getAVUser 就能通过 AV.User.current() 获取到用户
   }
 }
 </script>
