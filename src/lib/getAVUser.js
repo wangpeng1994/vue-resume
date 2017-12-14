@@ -5,7 +5,7 @@ export default function(user){
   // 如果调用 leancloud 的API 还是获取不到，则设为空
   return {     
     id: id || '',
-    username: id || '' 
+    username: username || '' 
   }
 }
 

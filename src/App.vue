@@ -2,12 +2,13 @@
   <div>
     <div class="page">
       <header>
-        <Topbar/>
+        <Topbar @preview="preview" v-show="!previewMode"/>
       </header>
       <main>
-        <ResumeEditor/>
+        <ResumeEditor v-show="!previewMode"/>
         <ResumePreview/>
       </main>
+      <el-button class="exitPreview" type="danger" @click="exitPreview" v-show="previewMode">退出预览</el-button>
     </div>
   </div>
 </template>
@@ -29,7 +30,7 @@ export default {
   store,
   data(){
     return {
-      text: '哈喽'
+      previewMode: false
     }
   },
   components: {Topbar, ResumeEditor, ResumePreview},
@@ -41,6 +42,15 @@ export default {
     this.$store.commit('initState', state) // 页面进入后，就立即尝试获得 localStorage 中的 state，然后 commit 到 mutation 中
     // 之前 SIgnUpForm 注册成功后，其父组件 Tobbar 会commit setUser， 而这一次是 App 主组件下页面载入时，也要去试着获取登录用户
     this.$store.commit('setUser', getAVUser()) // 如果是已经登录的用户，这里的 getAVUser 就能通过 AV.User.current() 获取到用户
+    // 监听 Topbar 的 preview 自定义事件。事件可以由vm.$emit触发
+  },
+  methods: {
+    preview(){
+      this.previewMode = true
+    },
+    exitPreview(){
+      this.previewMode = false
+    }
   }
 }
 </script>
@@ -72,5 +82,11 @@ export default {
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+  }
+
+  .exitPreview {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
   }
 </style>

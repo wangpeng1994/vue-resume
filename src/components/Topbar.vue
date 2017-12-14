@@ -6,13 +6,13 @@
         <div class="userActions" v-if="logined">
           <span class="welcome">你好，{{ user.username }}</span>
           <el-button type="danger" @click="signOut">注销</el-button>
+          <el-button type="success" @click="save">保存</el-button>
         </div>
         <div class="userActions" v-else>
           <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
           <el-button type="primary" @click="signInDialogVisible = true">登录</el-button>
         </div>
-        <el-button type="success">保存</el-button>
-        <el-button type="primary">预览</el-button>
+        <el-button type="primary" @click="preview">预览</el-button>
       </div>
     </div>
     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
@@ -52,10 +52,40 @@ export default {
       this.signUpDialogVisible = false
       this.signInDialogVisible = false
       this.$store.commit('setUser', user)
+      this.$message({
+        type: 'success',
+        message: '恭喜你，登录成功！'
+      })
     },
     signOut(){
-      AV.User.logOut()
-      this.$store.commit('removeUser')
+      this.$confirm('如果简历未保存，注销将会丢失改动，是否继续？', '提示', {
+        confirmButtonText: '注销',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(()=>{
+        AV.User.logOut()  // 调用注销接口
+        this.$store.commit('removeUser') // 同时修改仓库
+        this.$message({
+          type: 'success',
+          message: '当前用户已注销'
+        })
+      }).catch(()=>{
+        this.$message({
+          type: 'info',
+          message: '已回到当前编辑状态'
+        })
+      })
+    },
+    preview(){
+      this.$emit('preview')
+    },
+    save(){
+      // ... 待实现  
+
+      this.$message({
+        type: 'success',
+        message: '恭喜你，保存成功！'
+      })
     }
   }
 }
@@ -85,7 +115,7 @@ export default {
   .actions {
     display: flex;
     .userActions {
-      margin-right: 3em;
+      margin-right: 0.7em;
       .welcome {
         margin-right: .5em;
       }
