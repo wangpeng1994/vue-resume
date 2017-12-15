@@ -26,7 +26,7 @@
       <h2>工作经历</h2>
       <ol>
         <li v-for="item in resume.workHistory">
-          <h3> {{ item.company || '请填写公司名称' }} </h3>
+          <h3> {{ item.name || '请填写公司名称' }} </h3>
           <p> {{ item.content || '请填写工作内容' }} </p>
         </li>
       </ol>
@@ -37,7 +37,7 @@
       <ol>
         <li v-for="item in resume.education">
           <h3>
-            {{ item.school || '请填写学校名称' }} - {{ item.content || '请填写学历' }}
+            {{ item.name || '请填写学校名称' }} - {{ item.content || '请填写学历' }}
           </h3>
         </li>
       </ol>
@@ -47,7 +47,7 @@
       <h2>获奖情况</h2>
       <ol>
         <li v-for="item in resume.awards">
-          <h3> {{ item.name || '请填写比赛名称' }} </h3>
+          <h3> {{ item.name || '请填写奖项名称' }} </h3>
           <p> {{ item.content || '请填写所获等次' }} </p>
         </li>
       </ol>
@@ -58,7 +58,7 @@
       <ol>
         <li v-for="item in resume.contacts">
           <h3>
-            {{ item.contact || '请填写联系类型' }} - {{ item.content || '请填写联系方式' }}
+            {{ item.name || '请填写联系类型' }} - {{ item.content || '请填写联系方式' }}
           </h3>
         </li>
       </ol>

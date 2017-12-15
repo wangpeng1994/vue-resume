@@ -15,15 +15,16 @@
         <div v-if="resume[item.field] instanceof Array">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
-              <label> {{ key }} </label>
+              <label> {{ item.alias[key] }} </label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
             </div>
             <hr>
           </div>
+          <el-button type="primary" @click="addNew(item.field)">新增</el-button>
         </div>
 
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
-          <label> {{ key }} </label>
+          <label> {{ item.alias[key] }} </label>
           <!-- 改为单向绑定，用户的改变通过 commit mutation 来完成数据提交 -->
           <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)"> 
         </div>
@@ -53,6 +54,10 @@ export default {
   methods: {
     changeResumeField(path, value){
       this.$store.commit('updataResume', {path, value})
+    },
+    addNew(field){
+      console.log(field)
+      this.$store.commit('addNew', field)
     }
   }
 }
@@ -79,6 +84,7 @@ export default {
           align-items: center;
           margin-top: 16px;
           margin-bottom: 16px;
+          cursor: pointer;
           &.active {
             background: #fff;
             color: #000;
@@ -87,6 +93,7 @@ export default {
       }
     }
     > .panels {
+      overflow: auto;
       flex-grow: 1;
       > li { padding: 24px; }
     }

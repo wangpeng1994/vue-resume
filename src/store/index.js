@@ -13,12 +13,44 @@ export default new Vuex.Store({
     },
     resume: {
       config: [
-        { field: 'profile', icon: 'id' },
-        { field: 'projects', icon: 'folder' },
-        { field: 'workHistory', icon: 'work' },
-        { field: 'education', icon: 'hat' },
-        { field: 'awards', icon: 'cup' },
-        { field: 'contacts', icon: 'phone' }
+        { field: 'profile', icon: 'id',
+          alias: {
+            name: '姓名',
+            title: '职位',
+            city: '城市',
+            birthday: '出生年月'
+          }
+        },
+        { field: 'projects', icon: 'folder',
+          alias: {
+            name: '项目名称',
+            content: '项目描述'
+          }
+        },
+        { field: 'workHistory', icon: 'work',
+          alias: {
+            name: '单位名称',
+            content: '工作内容'
+          }
+        },
+        { field: 'education', icon: 'hat',
+          alias: {
+            name: '学校名称',
+            content: '学历'
+          }
+        },
+        { field: 'awards', icon: 'cup',
+          alias: {
+            name: '奖项名称',
+            content: '所获等次'
+          }
+        },
+        { field: 'contacts', icon: 'phone',
+          alias: {
+            name: '联系类型',
+            content: '联系方式'
+          }
+        }
       ],
       profile: {
         name: '张三丰',
@@ -33,14 +65,14 @@ export default new Vuex.Store({
       ],
       workHistory: [
         {
-          company: '饭跑跑股份有限公司', content: `公司总部设在XXXX地区， 先后在北京、上海成立分公司。是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，聚集了数百万家餐饮商户。为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
+          name: '饭跑跑股份有限公司', content: `公司总部设在XXXX地区， 先后在北京、上海成立分公司。是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，聚集了数百万家餐饮商户。为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
           我的主要工作如下：
           1. 制造 bug。
           2. 修复 bug。
           3. 完成产品设计需求。`
         },
         {
-          company: '大饼责任有限公司', content: `公司总部设在XXXX地区， 先后在北京、上海成立分公司。是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，聚集了数百万家餐饮商户。为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
+          name: '大饼责任有限公司', content: `公司总部设在XXXX地区， 先后在北京、上海成立分公司。是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，聚集了数百万家餐饮商户。为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
           我的主要工作如下：
           1. 制造 bug。
           2. 修复 bug。
@@ -48,16 +80,16 @@ export default new Vuex.Store({
         }
       ],
       education: [
-        { school: '哈佛大学', content: '本科' },
-        { school: '牛津大学', content: '硕士' }          
+        { name: '哈佛大学', content: '本科' },
+        { name: '牛津大学', content: '硕士' }          
       ],
       awards: [
         { name: '吉尼斯编程大赛', content: '连续十年蝉联冠军' },
         { name: '统一冰红茶大奖赛', content: '再来一瓶幸运王' }          
       ],
       contacts: [
-        { contact: 'phone', content: '18556529263' },
-        { contact: 'email', content: '947034046@qq.com' },
+        { name: 'phone', content: '18556529263' },
+        { name: 'email', content: '947034046@qq.com' },
       ]
     }
   },
@@ -80,6 +112,12 @@ export default new Vuex.Store({
     },
     removeUser(state){
       state.user.id = ''
+    },
+    addNew(state, payload){
+      state.resume[payload].push({
+        name: '',
+        content: ''
+      })
     }
   }
 })
