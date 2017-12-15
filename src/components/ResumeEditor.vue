@@ -16,7 +16,20 @@
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{ item.alias[key] }} </label>
-              <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
+              <textarea
+                v-if="key === 'content' && (item.field === 'projects' || item.field === 'workHistory')"
+                rows="8" 
+                placeholder="请输入内容" 
+                :value="value"
+                @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
+              </textarea>
+              <input
+                type="text"
+                v-else
+                placeholder="请输入内容"
+                :value="value"
+                @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)"
+              >
             </div>
             <hr>
           </div>
@@ -25,7 +38,6 @@
 
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{ item.alias[key] }} </label>
-          <!-- 改为单向绑定，用户的改变通过 commit mutation 来完成数据提交 -->
           <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)"> 
         </div>
       </li>
@@ -103,13 +115,15 @@ export default {
     > label {
       display: block;
     }
-    input[type="text"] {
+    input, textarea {
       margin: 16px 0;
       border: 1px solid #ddd;
       box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.25);
       width: 100%;
-      height: 40px;
       padding: 0 8px;
+    }
+    input[type="text"] {
+      height: 40px;
     }
   }
 
