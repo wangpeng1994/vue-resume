@@ -120,7 +120,7 @@ export default {
       border: 1px solid #ddd;
       box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.25);
       width: 100%;
-      padding: 0 8px;
+      padding: 8px;
     }
     input[type="text"] {
       height: 40px;

@@ -66,6 +66,7 @@ export default {
       flex-grow: 1;
     }
     >main {
+      height: calc(100vh - 96px); // 为了兼容 Edge 和 Firefox 中 overflow: auto  与 Chrome 的差异问题
       max-width: 1440px;
       margin-top: 16px;
       margin-bottom: 16px;
