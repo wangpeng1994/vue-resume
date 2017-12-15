@@ -2,7 +2,7 @@
   <div>
     <div class="page">
       <header>
-        <Topbar @preview="preview" v-show="!previewMode"/>
+        <Topbar @preview="preview" @fetchState="fetchState" v-show="!previewMode"/>
       </header>
       <main>
         <ResumeEditor v-show="!previewMode"/>
@@ -35,14 +35,9 @@ export default {
   },
   components: {Topbar, ResumeEditor, ResumePreview},
   created(){
-    let state = localStorage.getItem('state')
-    if(state){
-      state = JSON.parse(state)
-    }
-    this.$store.commit('initState', state) // 页面进入后，就立即尝试获得 localStorage 中的 state，然后 commit 到 mutation 中
     // 之前 SIgnUpForm 注册成功后，其父组件 Tobbar 会commit setUser， 而这一次是 App 主组件下页面载入时，也要去试着获取登录用户
     this.$store.commit('setUser', getAVUser()) // 如果是已经登录的用户，这里的 getAVUser 就能通过 AV.User.current() 获取到用户
-    // 监听 Topbar 的 preview 自定义事件。事件可以由vm.$emit触发
+    this.fetchState()
   },
   methods: {
     preview(){
@@ -50,6 +45,23 @@ export default {
     },
     exitPreview(){
       this.previewMode = false
+    },
+    fetchState(){
+      if(this.$store.state.user.id){
+        let query = new AV.Query('AllStates')
+        query.find().then((state)=>{
+          let avAllStates = state[0]
+          this.$store.commit('initState', JSON.parse(avAllStates.attributes.content))
+          // 很重要，如果用户第一次点击保存，实际上创建时state里的id是空的，只存在于内存中（但依然可以作为下次保存的依据，并且下次保存时就会把state id更新到对象中，从此万事大吉）
+          // 但是！此时如果只点击了一次保存（实际上是创建操作），就刷新或者退出重登（都会引起内存的刷新), 虽然可以正常fetch（只要用户id存在就能fetch），但是再点击保存，就失去了依据（创建OR更新的依据没了，保存时需要指定数据表中的state id的依据也没了！）
+          this.$store.state.id = avAllStates.id
+        }, (error)=>{
+          this.$message({
+            type: 'error',
+            message: '服务器出错，获取用户数据失败！'
+          })
+        })
+      }
     }
   }
 }

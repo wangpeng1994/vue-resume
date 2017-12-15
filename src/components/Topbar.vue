@@ -6,7 +6,7 @@
         <div class="userActions" v-if="logined">
           <span class="welcome">你好，{{ user.username }}</span>
           <el-button type="danger" @click="signOut">注销</el-button>
-          <el-button type="success" @click="save">保存</el-button>
+          <el-button type="success" @click="createOrUpdateState">保存</el-button>
         </div>
         <div class="userActions" v-else>
           <el-button type="success" @click="signUpDialogVisible = true">注册</el-button>
@@ -56,6 +56,7 @@ export default {
         type: 'success',
         message: '恭喜你，登录成功！'
       })
+      this.$emit('fetchState')
     },
     signOut(){
       this.$confirm('如果简历未保存，注销将会丢失改动，是否继续？', '提示', {
@@ -69,22 +70,56 @@ export default {
           type: 'success',
           message: '当前用户已注销'
         })
-      }).catch(()=>{
-        this.$message({
-          type: 'info',
-          message: '已回到当前编辑状态'
-        })
+        window.location.reload()
       })
     },
     preview(){
       this.$emit('preview')
     },
-    save(){
-      // ... 待实现  
-
-      this.$message({
-        type: 'success',
-        message: '恭喜你，保存成功！'
+    createOrUpdateState(){
+      if(this.$store.state.id){
+        this.updataState()
+      }else{
+        this.createState()
+      }
+    },
+    createState(){
+      let dataString = JSON.stringify(this.$store.state)
+      let AVState = AV.Object.extend('AllStates')
+      let avState = new AVState()
+      var acl = new AV.ACL()
+      acl.setReadAccess(AV.User.current(), true)
+      acl.setWriteAccess(AV.User.current(), true)
+      avState.set('content', dataString)
+      avState.setACL(acl)
+      avState.save().then((state)=>{
+        // 创建成功后将新建state的id设置到仓库store对象中，作为下次登录、刷新前（实际就是fetch之前）的重要依据。目的有二：1、再次点击保存时，逻辑判断为属于更新；2、更新时需要指明更新哪个state；3、
+        this.$store.state.id = state.id 
+        this.$message({
+          type: 'success',
+          message: '恭喜你，创建成功！'
+        })
+      }, (error)=>{
+        this.$message({
+          type: 'error',
+          message: '创建时服务器出错，保存失败！'
+        })
+      })
+    },
+    updataState(){
+      let dataString = JSON.stringify(this.$store.state)
+      let avState = AV.Object.createWithoutData('AllStates', this.$store.state.id)
+      avState.set('content', dataString)
+      avState.save().then(()=>{
+        this.$message({
+          type: 'success',
+          message: '恭喜你，保存成功！'
+        })
+      }, (error)=>{
+        this.$message({
+          type: 'error',
+          message: '更新时服务器出错，保存失败！'
+        })
       })
     }
   }

@@ -34,7 +34,7 @@
             </div>
             <hr>
           </div>
-          <el-button type="primary" plain @click="addNew(item.field)">新增</el-button>
+          <el-button type="primary" plain @click="addSubItem(item.field)">新增</el-button>
         </div>
 
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
@@ -68,8 +68,8 @@ export default {
     changeResumeField(path, value){
       this.$store.commit('updataResume', {path, value})
     },
-    addNew(field){
-      this.$store.commit('addNew', field)
+    addSubItem(field){
+      this.$store.commit('addSubItem', field)
     },
     deleteSubItem(field, subItemIndex){
       this.$confirm('你正在尝试删除当前条目，是否继续？', '提示', {
@@ -81,11 +81,6 @@ export default {
         this.$message({
           type: 'success',
           message: '当前条目已删除'
-        })
-      }).catch(()=>{
-        this.$message({
-          type: 'info',
-          message: '已撤回删除操作'
         })
       })
     }
