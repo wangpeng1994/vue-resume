@@ -14,6 +14,7 @@
       <li v-for="item in resume.config" v-show="item.field === selected">
         <div v-if="resume[item.field] instanceof Array">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+            <el-button type="danger" plain class="el-icon-delete"></el-button>
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{ item.alias[key] }} </label>
               <textarea
@@ -33,7 +34,7 @@
             </div>
             <hr>
           </div>
-          <el-button type="primary" @click="addNew(item.field)">新增</el-button>
+          <el-button type="primary" plain @click="addNew(item.field)">新增</el-button>
         </div>
 
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
@@ -108,6 +109,8 @@ export default {
       overflow: auto;
       flex-grow: 1;
       > li { padding: 24px; }
+
+      
     }
   }
 
@@ -126,6 +129,13 @@ export default {
       height: 40px;
     }
   }
+  .resumeField::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+
 
   ol { list-style: none; }
 
@@ -134,6 +144,14 @@ export default {
     border-top: 1px solid #ddd;
     margin: 24px 0;
   }
+
+
+  .el-icon-delete {
+    float: right;
+    line-height: 0;
+    font-size: 16px;
+  }
+
 </style>
 
 
