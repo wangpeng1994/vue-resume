@@ -116,6 +116,9 @@ export default new Vuex.Store({
         name: '',
         content: ''
       })
+    },
+    deleteSubItem(state, payload){
+      state.resume[payload.field].splice(payload.subItemIndex, 1)
     }
   }
 })

@@ -14,7 +14,7 @@
       <li v-for="item in resume.config" v-show="item.field === selected">
         <div v-if="resume[item.field] instanceof Array">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
-            <el-button type="danger" plain class="el-icon-delete"></el-button>
+            <el-button class="el-icon-delete" type="danger" plain @click="deleteSubItem(item.field, i)"></el-button>
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{ item.alias[key] }} </label>
               <textarea
@@ -69,8 +69,25 @@ export default {
       this.$store.commit('updataResume', {path, value})
     },
     addNew(field){
-      console.log(field)
       this.$store.commit('addNew', field)
+    },
+    deleteSubItem(field, subItemIndex){
+      this.$confirm('你正在尝试删除当前条目，是否继续？', '提示', {
+        confirmBUttonText: '删除',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(()=>{
+        this.$store.commit('deleteSubItem', {field, subItemIndex})
+        this.$message({
+          type: 'success',
+          message: '当前条目已删除'
+        })
+      }).catch(()=>{
+        this.$message({
+          type: 'info',
+          message: '已撤回删除操作'
+        })
+      })
     }
   }
 }
@@ -144,7 +161,6 @@ export default {
     border-top: 1px solid #ddd;
     margin: 24px 0;
   }
-
 
   .el-icon-delete {
     float: right;
