@@ -15,7 +15,7 @@
       </div>
       <div class="actions">
         <span class="errorMessage"> {{ errorMessage }} </span>
-        <input type="submit" value="提交">
+        <input type="submit" value="登录">
       </div>
     </form>
   </div>
@@ -48,5 +48,4 @@ export default {
     }
   }
 }
-</script>
- 
+</script> 

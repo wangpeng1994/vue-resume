@@ -96,17 +96,27 @@ main {
     }
     input {
       width: 100%;
-      border: 1px solid #67c23a;
       border-radius: 4px;
       font-size: 16px;
       line-height: 2;
       outline: none;
       color: #fff;
-      background: #67c23a;
       cursor: pointer;
-      &:hover {
-        background: #85ce61;
-        border-color: #85ce61;
+      &[value="注册"] {
+        border: 1px solid #67c23a;
+        background: #67c23a;
+        &:hover {
+          background: #85ce61;
+          border-color: #85ce61;
+        }
+      }
+      &[value="登录"] {
+        border: 1px solid #409eff;
+        background: #409eff;
+        &:hover {
+          background: #66b1ff;
+          border-color: #66b1ff;
+        }
       }
     }
   }
