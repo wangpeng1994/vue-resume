@@ -68,6 +68,8 @@ main {
       padding: 5px 5px 5px 32px;
       font-size: 14px;
       border: 1px solid #999;
+      border-radius: 4px;
+      background-color: #faffbd;
       &:hover { border: 1px solid #666; }
     }
     // 引入svg通用样式
@@ -78,7 +80,7 @@ main {
       width: 1em; 
       height: 1em;
       vertical-align: -0.15em;
-      fill: currentColor;
+      fill: #666;
       overflow: hidden;
     }
     & + .row { margin-top: 16px; }
