@@ -56,7 +56,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     // assetsPublicPath: '/vue-resume/dist',
-    assetsPublicPath: '/vue-resume', // 为了 gh-pages 分支可以解析静态资源路径
+    assetsPublicPath: '/vue-resume/', // 为了 gh-pages 分支可以解析静态资源路径
 
     /**
      * Source Maps
