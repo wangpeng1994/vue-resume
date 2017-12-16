@@ -2,16 +2,20 @@
   <div>
     <form @submit.prevent="signIn">
       <div class="row">
-        <label>用户名</label>
-        <input type="text" v-model="formData.username" required>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-username"></use>
+        </svg>
+        <input type="text" v-model="formData.username" placeholder="请输入用户名" required>
       </div>
       <div class="row">
-        <label>密码</label>
-        <input type="password" v-model="formData.password" required>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-password"></use>
+        </svg>
+        <input type="password" v-model="formData.password" placeholder="请输入登录密码" required>
       </div>
       <div class="actions">
-        <input type="submit" value="提交">
         <span class="errorMessage"> {{ errorMessage }} </span>
+        <input type="submit" value="提交">
       </div>
     </form>
   </div>
@@ -32,9 +36,6 @@ export default {
       },
       errorMessage: ''
     }
-  },
-  created(){
-
   },
   methods: {
     signIn(){

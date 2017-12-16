@@ -147,7 +147,13 @@ export default {
     clear: both;
   }
 
-
+  // 引入svg通用样式
+  .icon {
+    width: 1.5em; height: 1.5em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
 
   ol { list-style: none; }
 

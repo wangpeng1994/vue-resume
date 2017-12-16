@@ -74,6 +74,7 @@ export default {
     flex-direction: column;
     background: #eaebec;
     min-width: 1024px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     >main {
       flex-grow: 1;
     }
@@ -89,13 +90,7 @@ export default {
       align-self: center;
     }
   }
-  // 引入svg通用样式
-  .icon {
-    width: 1.5em; height: 1.5em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-  }
+
 
   .exitPreview {
     position: fixed;

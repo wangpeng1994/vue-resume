@@ -3,7 +3,7 @@
     <div class="dialog">
       <header>
         {{ title }}
-        <span class="close" @click="close">X</span>
+        <i class="el-icon-close" @click="close"></i>
       </header>
       <main>
         <slot></slot>
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .dialogWrapper {
     position: fixed;
     top: 0;
@@ -38,18 +38,79 @@ export default {
     align-items: center;
   }
   .dialog {
-    min-height: 4em;
-    min-width: 8em;
+    height: 240px;
+    width: 350px;
     background: #fff;
+    border-radius: 5px;
     > header {
-      padding: 16px;
+      padding: 16px 18px;
       display: flex;
+      font-size: 16px;
+
       justify-content: space-between;
+      i {
+        cursor: pointer;
+        &:hover {
+          color: #66b1ff;
+        }
+      }
     }
-    > main { padding: 16px; }
   }
 
+  // 下方是注册登录表单样式
+main {
+  padding: 16px 32px;
+  .row {
+    position: relative;
+    input {
+      height: 35px;
+      width: 100%;
+      padding: 5px 5px 5px 32px;
+      font-size: 14px;
+      border: 1px solid #999;
+      &:hover { border: 1px solid #666; }
+    }
+    // 引入svg通用样式
+    .icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 1em; 
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+    & + .row { margin-top: 16px; }
+  }
 
+  .actions {
+    .errorMessage {
+      display: block;
+      margin: 8px 0;
+      height: 20px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      color: #ff9800;
+    }
+    input {
+      width: 100%;
+      border: 1px solid #67c23a;
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 2;
+      outline: none;
+      color: #fff;
+      background: #67c23a;
+      cursor: pointer;
+      &:hover {
+        background: #85ce61;
+        border-color: #85ce61;
+      }
+    }
+  }
+}
 </style>
 
 

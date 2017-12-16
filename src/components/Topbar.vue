@@ -130,7 +130,6 @@ export default {
   #topbar {
     background: #fff;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
-    font-size: 20px;
     > .wrapper {
       max-width: 1440px;
       margin: 0 auto;
@@ -152,6 +151,7 @@ export default {
     .userActions {
       margin-right: 0.7em;
       .welcome {
+        font-size: 20px;
         margin-right: .5em;
       }
     }
@@ -161,6 +161,9 @@ export default {
     line-height: 0.8;
     font-size: 16px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
+  }
+  .el-button + .el-button {
+    margin-left: 6px;
   }
 </style>
 
