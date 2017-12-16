@@ -92,7 +92,7 @@ export default {
   #resumeEditor {
     margin-right: 16px;
     min-width: 35%; //因为 预览区是 flex，所以会挤压元素，所以这里改成 min-width
-    background:#fff;
+    background:#fafffc;
     box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
     display: flex;
     border-radius: 4px;
@@ -111,7 +111,7 @@ export default {
           margin-bottom: 16px;
           cursor: pointer;
           &.active {
-            background: #fff;
+            background: #fafffc;
             color: #000;
           }
         }
@@ -134,6 +134,8 @@ export default {
       box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.25);
       width: 100%;
       padding: 8px;
+      color: #222;
+      font-size: 14px;
     }
     input[type="text"] {
       height: 40px;

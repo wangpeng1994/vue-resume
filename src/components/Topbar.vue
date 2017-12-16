@@ -128,7 +128,7 @@ export default {
 
 <style scoped lang="scss">
   #topbar {
-    background: #fff;
+    background: #000;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
     > .wrapper {
       max-width: 1440px;
@@ -143,7 +143,26 @@ export default {
     }
     .logo {
       font-size: 24px;
-      color:#000;
+      color: #01e2c5;
+      transition: all 0.3s;
+      cursor: pointer;
+      &:hover {
+        animation: rainbow 3s linear infinite;
+      }
+      @keyframes rainbow {  // 开心就好
+        0% { color: #01e2c5; }
+        10% { color: #0de201; }
+        20% { color: #bee201; }
+        30% { color: #e27501; }
+        40% { color: #e20101; }
+        50% { color: #e201b0; }
+        60% { color: #6e01e2; }
+        60% { color: #3d01e2; }          
+        70% { color: #0117e2; }
+        80% { color: #0178e2; }
+        90% { color: #01ade2; }
+        100% { color: #01e2c5; }          
+      }
     }
   }
   .actions {
@@ -151,6 +170,7 @@ export default {
     .userActions {
       margin-right: 0.7em;
       .welcome {
+        color: #fff;
         font-size: 20px;
         margin-right: .5em;
       }

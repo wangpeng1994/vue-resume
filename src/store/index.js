@@ -17,8 +17,8 @@ export default new Vuex.Store({
         { field: 'profile', icon: 'id',
           alias: {
             name: '姓名',
-            title: '职位',
-            city: '城市',
+            title: '应聘岗位',
+            city: '现居城市',
             birthday: '出生年月'
           }
         },
@@ -55,27 +55,36 @@ export default new Vuex.Store({
       ],
       profile: {
         name: '张三丰',
-        title: '掌门人',
-        city: '武当山',
-        birthday: '1542-05-01'
+        title: 'web前端开发工程师',
+        city: '武当山太和宫',
+        birthday: '1247-04-09'
         
       },
       projects: [
-        { name: '项目1', content: '文字' },
-        { name: '项目2', content: '文字' }
+        {
+          name: '基于React+Redux的天眼数据平台', content: `1. 基于React全家桶，并使⽤AntDesign和Echarts组件库完成开发 
+          2. 使⽤Redux进⾏全局状态管理，并使⽤Redux-devtools⼯具辅助开发
+          3. 适配移动端，并与原⽣APP对接，⽀持⼿机从APP进⼊访问
+          `
+        },
+        {
+          name: '基于Vue+Vant的Mobile端⻚⾯', content: `1. 基于Vue，并使⽤Vant组件库完成开发，并实现与原⽣APP数据交互
+          2. 使⽤H5的getUserMedia调⽤⽤户摄像头，并进⾏拍照
+          3. 基于Vue，并使⽤Vant组件库完成开发，并实现与原⽣APP数据交互`
+        }
       ],
       workHistory: [
         {
           name: '饭跑跑股份有限公司', content: `公司总部设在XXXX地区，是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
           我的主要工作如下：
-          1. 制造 bug。
-          2. 修复 bug。`
+          1. 制造 bug
+          2. 修复 bug`
         },
         {
           name: '大饼责任有限公司', content: `公司总部设在XXXX地区，是中国知名的在线外卖订餐平台，已经覆盖中国数千个城市，为不同类型的餐饮及零售行业商户提供基于互联网技术的一体化运营解决方案。
           我的主要工作如下：
-          1. 制造 bug。
-          2. 修复 bug。`
+          1. 制造 bug
+          2. 修复 bug`
         }
       ],
       education: [
