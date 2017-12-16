@@ -121,8 +121,6 @@ export default {
       overflow: auto;
       flex-grow: 1;
       > li { padding: 24px; }
-
-      
     }
   }
 
@@ -155,20 +153,23 @@ export default {
     overflow: hidden;
   }
 
+  .subitem { 
+    position: relative;
+    .el-icon-delete {
+      position: absolute;
+      right: 0;
+      top: -4px;
+      line-height: 0;
+      font-size: 16px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 24px 0;
+    }  
+  }
+
   ol { list-style: none; }
-
-  hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 24px 0;
-  }
-
-  .el-icon-delete {
-    float: right;
-    line-height: 0;
-    font-size: 16px;
-  }
-
 </style>
 
 

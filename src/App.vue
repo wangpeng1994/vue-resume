@@ -72,7 +72,8 @@ export default {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #eaebec;
+    background: url('http://oy5wj3l9n.bkt.clouddn.com//17-12-16/57843004.jpg') center center no-repeat;
+    background-size: cover;
     min-width: 1024px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     >main {
@@ -90,7 +91,6 @@ export default {
       align-self: center;
     }
   }
-
 
   .exitPreview {
     position: fixed;

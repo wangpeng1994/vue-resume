@@ -1,6 +1,5 @@
 <template>
   <div id="resumePreview">
-    
     <section data-name="profile" v-show="resume.profile">
       <h1>
         {{ resume.profile.name || '请填写姓名' }}
@@ -79,6 +78,7 @@ export default {
 
 <style lang="scss">
   #resumePreview {
+    padding: 24px;
     max-width: 900px;
     margin: 0 auto;
     flex-grow: 1;
