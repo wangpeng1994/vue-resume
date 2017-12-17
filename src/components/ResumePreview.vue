@@ -116,6 +116,7 @@ export default {
       }
     }
     section[data-name="profile"] {
+      margin-top: 24px;
       display: flex;
       justify-content: space-around;
       h1 {
